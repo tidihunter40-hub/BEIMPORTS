@@ -16,7 +16,7 @@ Abra `http://127.0.0.1:3000`. Para ativar o painel local em `/admin`, gere um ha
 
 ## Preparação para publicação na Vercel
 
-1. Importe o repositório GitHub `tidihunter40-hub/BEIMPORTS` na Vercel, selecione **Other** como framework e `be-imports-site` como **Root Directory**. O `vercel.json` desta pasta encaminha as rotas à API e inclui os recursos estáticos. Use `npm run build` como Build Command e não defina um Output Directory personalizado.
+1. Importe o repositório GitHub `tidihunter40-hub/BEIMPORTS` na Vercel, selecione **Other** como framework e `be-imports-site` como **Root Directory**. O `vercel.json` desta pasta encaminha as rotas à API e define `assets` como Output Directory, uma pasta existente que contém somente imagens públicas; o build apenas verifica a sintaxe. Use `npm run build` como Build Command.
 2. Use um **projeto Supabase exclusivo da BE IMPORTS**. Se a tabela e o bucket ainda não existirem, a aplicação de `supabase/001_be_imports.sql` exige autorização do proprietário. Não use o banco da loja Wesley.
 3. Configure `SUPABASE_URL`, `SUPABASE_SECRET_KEY` e `ADMIN_PASSWORD_HASH` como variáveis da Vercel no ambiente que será implantado. Guarde a secret key e o hash apenas nas configurações da Vercel, nunca no Git. `PUBLIC_SITE_URL` é opcional; se usado, deve corresponder exatamente à origem da implantação. Deixe-o vazio em previews com domínios variáveis.
 4. **Antes de publicar o catálogo atual**, migre com autorização os dados de `data/catalog.json` e as fotos em `uploads/` para a tabela e o bucket da BE IMPORTS no Supabase, substituindo as referências `/uploads/...` pelas URLs públicas do bucket. Esses arquivos locais são ignorados pelo Git e pela Vercel. Confira produtos, categorias, preços, estoque e fotos após a migração.
