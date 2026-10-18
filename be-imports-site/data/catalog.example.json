@@ -1,0 +1,19 @@
+{
+  "revision": 0,
+  "settings": {
+    "instagram": "https://www.instagram.com/beimportsreserva/",
+    "whatsapp": "",
+    "address": "Rua E Zona Oeste, 662, Centro, Ribeira do Pombal, BA",
+    "hours": "Segunda a sexta: 9h às 20h; sábado: 9h às 17h; domingo: 9h às 13h"
+  },
+  "categories": [
+    { "name": "Camisas", "image": "" },
+    { "name": "Bermudas", "image": "" },
+    { "name": "Bonés", "image": "" },
+    { "name": "Perfumes", "image": "" },
+    { "name": "Fones de ouvido", "image": "" },
+    { "name": "Roupas", "image": "" },
+    { "name": "Acessórios", "image": "" }
+  ],
+  "products": []
+}

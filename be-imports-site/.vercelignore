@@ -1,0 +1,5 @@
+.env
+data/catalog.json
+uploads/
+test/
+scripts/

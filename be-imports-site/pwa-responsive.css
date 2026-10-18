@@ -1,0 +1,55 @@
+/* Ajustes de toque e telas estreitas, sem alterar a arte aprovada. */
+#pwa-install-trigger[hidden],#pwa-update[hidden],#pwa-connection-status[hidden]{display:none!important}
+#pwa-install-trigger{display:none;border:0;background:none;color:#D6C390;text-align:left;font-weight:700}
+#pwa-connection-status{position:sticky;top:0;z-index:50;padding:10px 16px;background:#6b2119;color:#fff;text-align:center;font-size:13px;font-weight:700}
+#pwa-update{position:fixed;z-index:60;right:16px;bottom:max(16px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;max-width:calc(100% - 32px);padding:11px 14px;border:1px solid #D6C390;border-radius:7px;background:#080F1C;color:#fff;box-shadow:0 8px 26px #000a;font-size:13px}
+#pwa-update button,#pwa-ios-help button{min-height:44px;padding:8px 14px;border:1px solid #D6C390;border-radius:4px;background:#D6C390;color:#080F1C;font-weight:800}
+#pwa-ios-help{width:min(420px,calc(100% - 32px));padding:24px;border:1px solid #D6C390;border-radius:8px;background:#080F1C;color:#fff}
+#pwa-ios-help::backdrop{background:#000b}
+#pwa-ios-help h2{margin:0 0 12px;font-size:22px}
+#pwa-ios-help p{line-height:1.55}
+@supports(padding:env(safe-area-inset-top)){
+  body{padding-top:env(safe-area-inset-top)}
+  .whatsapp-float{bottom:max(12px,env(safe-area-inset-bottom))}
+}
+@media(max-width:900px){
+  @supports(padding:env(safe-area-inset-bottom)){
+    .primary-nav{padding-bottom:max(15px,env(safe-area-inset-bottom))}
+  }
+}
+@media(max-width:900px){
+  .announcement-inner{justify-content:space-around}
+  .announcement-inner>span:nth-child(n+3){display:none}
+  .primary-nav{max-height:calc(100dvh - 74px);overflow-y:auto;overscroll-behavior:contain}
+  .admin-layout{grid-template-columns:minmax(0,1fr)}
+  body:has(.admin-shell) .whatsapp-float{display:none}
+  #pwa-install-trigger:not([hidden]){display:block;width:100%;min-height:48px;padding:12px 4px}
+}
+@media(max-width:760px){
+  .primary-nav>a{min-height:44px}
+  .admin-shell,.cart-page{min-width:0}
+  .admin-layout,.admin-editor,.admin-panel,.admin-row,.cart-layout,.cart-list,.cart-summary{min-width:0}
+  .admin-list{max-height:320px;overflow-y:auto;overscroll-behavior:contain}
+  .admin-panel{padding:clamp(14px,4vw,24px)}
+  .admin-panel form label,.admin-panel fieldset,.admin-panel input,.admin-panel select,.admin-panel textarea{min-width:0;max-width:100%}
+  .admin-panel form input:not([type=checkbox]),.admin-panel form select,.admin-panel form textarea{width:100%}
+  .admin-actions,.admin-list-title,.admin-heading{flex-wrap:wrap}
+  .admin-actions button,.admin-list-title button,.admin-heading button{min-height:44px}
+  .admin-shirt-sizes>div{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cart-summary form input,.cart-summary form textarea,.admin-panel input,.admin-panel select,.admin-panel textarea{font-size:16px}
+}
+@media(max-width:520px){
+  body:has(.cart-page) .whatsapp-float{display:none}
+  .whatsapp-float{right:3px;width:44px;height:44px;display:grid;place-items:center;padding:0;border-radius:50%;font-size:0}
+  .whatsapp-float::before{content:'WA';font-size:13px;font-weight:800}
+  body:has(.home-hero) .whatsapp-float{right:max(3px,env(safe-area-inset-right));bottom:max(6px,env(safe-area-inset-bottom))}
+  .cart-item{min-width:0}
+  .cart-item>strong{white-space:normal}
+  .cart-item-actions{gap:8px 16px}
+  .cart-item-actions input{min-height:44px}
+  .cart-item-actions button{min-height:44px}
+  .cart-summary>p{flex-wrap:wrap}
+  .cart-summary .button,#checkout-feedback .button{width:100%}
+  .admin-list-title h2,.admin-heading h1{overflow-wrap:anywhere}
+  .admin-panel input[type=file]{width:100%}
+}

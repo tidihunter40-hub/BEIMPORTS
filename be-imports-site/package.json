@@ -1,0 +1,13 @@
+{
+  "name": "be-imports-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --use-system-ca --env-file-if-exists=.env server.js",
+    "build": "node --check server.js && node --check api/index.js && node --check script.js && node --check pwa.js && node --check bermudas-page.js && node --check ofertas-page.js && node --check perfumes-page.js && node --check eletronicos-page.js && node --check catalog-filter.js && node --check admin.js && node --check admin-workspace.js && node --check admin-import.js && node --check checkout.js && node --check sw.js",
+    "test": "node --test test/*.test.js",
+    "admin:hash": "node scripts/hash-admin-password.mjs"
+  }
+}
+

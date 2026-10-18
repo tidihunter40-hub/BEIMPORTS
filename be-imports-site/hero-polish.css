@@ -1,0 +1,152 @@
+/* Hero-only refinements. Keep catalog, header and product styles unchanged. */
+:is(.home-hero,.shirts-hero,.shoes-hero,.caps-hero,.bermudas-hero,.perfumes-hero,.electronics-hero,.offers-hero,.product-hero,.store-hero) h1 {
+  font-family:Manrope,var(--font);
+  font-weight:800;
+  line-height:1.12;
+  letter-spacing:-.045em;
+  overflow:visible;
+}
+#conteudo .home-copy h1 {
+  font-size:clamp(46px,5.3vw,76px);
+  line-height:1.1;
+  letter-spacing:-.055em;
+  white-space:normal;
+}
+:is(.shoes-hero,.caps-hero,.bermudas-hero,.perfumes-hero,.electronics-hero,.offers-hero) h1 {
+  margin:5px 0 3px;
+  padding:.12em 0 .05em;
+  font-size:clamp(42px,4.6vw,74px);
+  line-height:1.1;
+  letter-spacing:-.045em;
+  text-shadow:none;
+  filter:drop-shadow(0 4px 8px #000a);
+}
+:is(.shoes-hero,.caps-hero,.bermudas-hero,.perfumes-hero,.electronics-hero,.offers-hero) :is(.shoes-hero-copy,.caps-hero-copy,.bermudas-hero-copy,.perfumes-hero-copy,.electronics-hero-copy,.offers-hero-copy) {
+  min-width:0;
+  max-width:min(600px,53vw);
+}
+:is(.shoes-breadcrumb,.caps-breadcrumb,.bermudas-breadcrumb,.perfumes-breadcrumb,.electronics-breadcrumb,.offers-breadcrumb,.shirts-breadcrumb) {
+  font-family:Manrope,var(--font);
+  font-size:clamp(10px,.8vw,12px);
+  line-height:1.4;
+}
+:is(.shoes-hero-copy,.caps-hero-copy,.bermudas-hero-copy,.perfumes-hero-copy,.electronics-hero-copy,.offers-hero-copy,.shirts-hero-copy)>p {
+  margin:5px 0 17px;
+  font-family:Manrope,var(--font);
+  font-size:clamp(13px,1.15vw,17px);
+  line-height:1.38;
+  letter-spacing:.025em;
+}
+:is(.shoes-hero-button,.caps-hero-button,.bermudas-hero-button,.perfumes-hero-button,.electronics-hero-button,.offers-hero-button,.shirts-hero-button) {
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  min-height:46px;
+  padding:9px 22px;
+  font-family:Manrope,var(--font);
+  font-size:14px;
+  font-weight:800;
+  line-height:1.2;
+  text-align:center;
+}
+:is(.shoes-hero-button,.caps-hero-button,.bermudas-hero-button,.perfumes-hero-button,.electronics-hero-button,.offers-hero-button,.shirts-hero-button) span {line-height:1}
+
+.shoes-hero,.caps-hero,.bermudas-hero {height:clamp(345px,25vw,400px)}
+.perfumes-hero,.electronics-hero,.offers-hero {height:clamp(365px,27vw,430px)}
+.shoes-hero-scene {object-position:center 6%}
+.caps-hero-scene {object-position:center 5%}
+.bermudas-hero-scene {object-position:center 5%}
+.perfumes-hero-scene {object-position:center 5%}
+.electronics-hero-scene {object-position:center 6%}
+.offers-hero-scene {object-position:center 5%}
+
+.shirts-hero-art {
+  height:clamp(355px,27vw,440px);
+  aspect-ratio:auto;
+  background:#02070d;
+}
+.shirts-hero-reference {display:none}
+.shirts-hero-art>.shirts-hero-scene {
+  display:block;
+  position:absolute;
+  top:20px;
+  left:0;
+  width:100%;
+  max-width:none;
+  height:calc(100% - 20px);
+  object-fit:cover;
+  object-position:center top;
+}
+.shirts-hero-shade {
+  position:absolute;
+  z-index:1;
+  inset:0;
+  background:linear-gradient(90deg,#02070d 0%,#02070d 30%,#02070df6 36%,#02070dbf 43%,transparent 57%);
+  pointer-events:none;
+}
+.shirts-hero-content {
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  width:calc(100% - 9%);
+  max-width:1800px;
+  height:100%;
+  margin:auto;
+}
+.shirts-hero-copy {max-width:min(540px,48vw)}
+.shirts-breadcrumb {display:flex;align-items:center;gap:12px;color:#fff}
+.shirts-breadcrumb strong,.shirts-hero-copy>p b {color:#ffd36a}
+.shirts-hero h1 {
+  margin:5px 0 3px;
+  padding:.12em 0 .05em;
+  background:linear-gradient(#fff 12%,#fff 43%,#f3d993 71%,#bc8a36);
+  background-clip:text;
+  color:transparent;
+  font-size:clamp(42px,4.6vw,74px);
+  filter:drop-shadow(0 4px 8px #000a);
+}
+.shirts-hero-button {
+  min-width:220px;
+  border:1px solid #d4af37;
+  border-radius:100px;
+  background:linear-gradient(120deg,#ffe59c,#eeb83e);
+  color:#071019;
+  text-decoration:none;
+  transition:filter .2s,transform .2s,box-shadow .2s;
+}
+.shirts-hero-button:hover {filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 24px #d4af3744}
+.shirts-hero-button:focus-visible {outline:3px solid #fff;outline-offset:3px}
+.product-hero .campaign-copy h1 {font-size:clamp(48px,5.8vw,78px);line-height:1.1}
+.store-hero h1 {font-size:clamp(42px,5.6vw,76px);line-height:1.12}
+
+@media(max-width:850px) {
+  :is(.shoes-hero,.caps-hero,.bermudas-hero,.perfumes-hero,.electronics-hero,.offers-hero) :is(.shoes-hero-copy,.caps-hero-copy,.bermudas-hero-copy,.perfumes-hero-copy,.electronics-hero-copy,.offers-hero-copy) {max-width:68vw}
+  .shirts-hero-copy {max-width:62vw}
+}
+@media(max-width:600px) {
+  #conteudo .home-copy h1 {font-size:clamp(39px,10vw,54px);line-height:1.12}
+  :is(.shoes-hero,.caps-hero,.bermudas-hero) {height:400px}
+  :is(.perfumes-hero,.electronics-hero,.offers-hero) {height:420px}
+  :is(.shoes-hero,.caps-hero,.bermudas-hero,.perfumes-hero,.electronics-hero,.offers-hero) h1,
+  .shirts-hero h1 {font-size:clamp(38px,10vw,48px);line-height:1.12;letter-spacing:-.045em}
+  .electronics-hero h1 {font-size:clamp(33px,9vw,42px)}
+  :is(.shoes-hero,.caps-hero,.bermudas-hero,.perfumes-hero,.electronics-hero,.offers-hero) :is(.shoes-hero-copy,.caps-hero-copy,.bermudas-hero-copy,.perfumes-hero-copy,.electronics-hero-copy,.offers-hero-copy) {max-width:100%}
+  :is(.shoes-hero-copy,.caps-hero-copy,.bermudas-hero-copy,.perfumes-hero-copy,.electronics-hero-copy,.offers-hero-copy,.shirts-hero-copy)>p {font-size:12px;line-height:1.4}
+  .shoes-hero-scene {object-position:40% top}
+  .caps-hero-scene {object-position:40% top}
+  .bermudas-hero-scene {object-position:44% top}
+  .perfumes-hero-scene {object-position:57% top}
+  .electronics-hero-scene {object-position:55% top}
+  .offers-hero-scene {object-position:58% top}
+  .shirts-hero-art {height:420px}
+  .shirts-hero-art>.shirts-hero-scene {top:24px;height:calc(100% - 24px);object-position:55% top}
+  .shirts-hero-shade {background:linear-gradient(0deg,#02070df8 0%,#02070de8 31%,#02070d76 53%,transparent 78%)}
+  .shirts-hero-content {align-items:flex-end;width:calc(100% - 36px);padding-bottom:20px}
+  .shirts-hero-copy {max-width:100%}
+  .shirts-hero-button {min-width:195px;min-height:43px;font-size:13px}
+  .product-hero .campaign-copy h1 {font-size:clamp(43px,11vw,56px)}
+  .store-hero h1 {font-size:clamp(40px,10vw,54px)}
+}
+@media(prefers-reduced-motion:reduce) {.shirts-hero-button {transition:none}}
