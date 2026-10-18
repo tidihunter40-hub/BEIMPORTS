@@ -14,16 +14,16 @@ npm start
 
 Abra `http://127.0.0.1:3000`. Para ativar o painel local em `/admin`, gere um hash com `npm run admin:hash` e defina `ADMIN_PASSWORD_HASH` no ambiente antes de iniciar o servidor. Sem Supabase, o painel grava em `data/catalog.json`, que é ignorado pelo Git.
 
-## Dados e publicação na Vercel
+## Preparação para publicação na Vercel
 
-1. Crie um **projeto Supabase exclusivo da BE IMPORTS** e execute `supabase/001_be_imports.sql` no SQL Editor. Não use o banco da loja Wesley.
-2. Configure `SUPABASE_URL`, `SUPABASE_SECRET_KEY` e `ADMIN_PASSWORD_HASH` no projeto Vercel da BE IMPORTS. `PUBLIC_SITE_URL` é opcional; se definido, deve apontar para a origem pública em que o painel será usado.
-3. Defina `be-imports-site` como diretório raiz do projeto Vercel. O `vercel.json` encaminha as rotas à API e inclui os recursos estáticos.
-4. Revise as categorias no painel e publique os produtos reais: nome, categoria, foto, preço e estoque. O painel aceita até 8 fotos adicionais e um link de vídeo do YouTube por produto. Somente itens em estado **Publicado** aparecem publicamente. O preço anterior só vira oferta quando for maior que o preço atual.
-5. Insira o número comercial do WhatsApp, com DDI e DDD, nas informações da loja. Até isso ocorrer, o site mostra o Instagram como contato e não cria links `wa.me` falsos.
-6. Execute `npm run build` e `npm test`, confira as rotas e dados no ambiente de destino, depois implante na Vercel.
+1. Importe o repositório GitHub `tidihunter40-hub/BEIMPORTS` na Vercel, selecione **Other** como framework e `be-imports-site` como **Root Directory**. O `vercel.json` desta pasta encaminha as rotas à API e inclui os recursos estáticos. Use `npm run build` como Build Command e não defina um Output Directory personalizado.
+2. Use um **projeto Supabase exclusivo da BE IMPORTS**. Se a tabela e o bucket ainda não existirem, a aplicação de `supabase/001_be_imports.sql` exige autorização do proprietário. Não use o banco da loja Wesley.
+3. Configure `SUPABASE_URL`, `SUPABASE_SECRET_KEY` e `ADMIN_PASSWORD_HASH` como variáveis da Vercel no ambiente que será implantado. Guarde a secret key e o hash apenas nas configurações da Vercel, nunca no Git. `PUBLIC_SITE_URL` é opcional; se usado, deve corresponder exatamente à origem da implantação. Deixe-o vazio em previews com domínios variáveis.
+4. **Antes de publicar o catálogo atual**, migre com autorização os dados de `data/catalog.json` e as fotos em `uploads/` para a tabela e o bucket da BE IMPORTS no Supabase, substituindo as referências `/uploads/...` pelas URLs públicas do bucket. Esses arquivos locais são ignorados pelo Git e pela Vercel. Confira produtos, categorias, preços, estoque e fotos após a migração.
+5. Execute `npm run build` e `npm test`, depois confira em uma implantação de teste `/`, `/api/catalog`, `/admin`, o login, o envio de foto e o checkout. O painel envia as fotos diretamente ao Storage por uma URL temporária emitida após a autenticação, preservando o limite de 5 MB sem exceder o limite de requisição das Functions.
+6. Confirme endereço, horário, Instagram e número comercial do WhatsApp, com DDI e DDD, antes de publicar em produção. Até o número ser cadastrado, o site mostra o Instagram como contato. Somente produtos em estado **Publicado** aparecem publicamente.
 
-Não há catálogo real, número de WhatsApp individual ou projeto Vercel/Supabase BE configurado nesta pasta. Portanto, esta versão **não está publicada**. O endereço, horário e Instagram iniciais seguem o registro público em `../FONTES_INSTAGRAM_BE_IMPORTS.md`; confirme-os com a loja antes da publicação.
+O catálogo e as fotos locais ainda precisam da etapa 4 para aparecerem na Vercel. A preparação descrita aqui não executa a migração nem inicia uma implantação. Depois de conectar o GitHub à Vercel, novos pushes na branch de produção podem iniciar implantações automaticamente. O endereço, horário e Instagram iniciais seguem o registro em `../FONTES_INSTAGRAM_BE_IMPORTS.md`; confirme-os com a loja antes da publicação.
 
 ## Funcionalidade
 

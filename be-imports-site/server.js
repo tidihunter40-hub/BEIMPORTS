@@ -324,6 +324,18 @@ export async function handler(req, res) {
         const next = cleanCatalog(data);
         return json(res, 200, await writeCatalog(next, data.revision));
       }
+      if (pathname === '/api/admin/upload-url' && req.method === 'POST') {
+        checkOrigin(req);
+        if (!hosted) return json(res, 200, { direct: false });
+        const data = await body(req, 2000);
+        const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[data.type];
+        if (!ext) throw fail(400, 'Use PNG, JPEG ou WebP.');
+        const name = `${randomUUID()}.${ext}`;
+        const signed = await supa(`/storage/v1/object/upload/sign/${bucket}/${name}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+        const uploadUrl = new URL(`${supabaseUrl}/storage/v1${signed?.url || ''}`);
+        if (uploadUrl.pathname !== `/storage/v1/object/upload/sign/${bucket}/${name}` || !uploadUrl.searchParams.get('token')) throw fail(503, 'Não foi possível preparar o envio da foto.');
+        return json(res, 200, { direct: true, uploadUrl: uploadUrl.href, url: photoBase + name });
+      }
       if (pathname === '/api/admin/upload' && req.method === 'POST') {
         checkOrigin(req);
         const data = await body(req);

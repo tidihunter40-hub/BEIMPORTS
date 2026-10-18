@@ -104,7 +104,16 @@ async function persist(data, selector) {
 }
 async function upload(file) {
   if (!file) return null;
-  if (!['image/png','image/jpeg','image/webp'].includes(file.type) || file.size > 5_242_880) throw new Error('Use uma foto PNG, JPEG ou WebP de até 5 MB.');
+  if (!['image/png','image/jpeg','image/webp'].includes(file.type) || !file.size || file.size > 5_242_880) throw new Error('Use uma foto PNG, JPEG ou WebP de até 5 MB.');
+  const signature = [...new Uint8Array(await file.slice(0, 12).arrayBuffer())].map(byte => byte.toString(16).padStart(2, '0')).join('');
+  const valid = file.type === 'image/png' ? signature.startsWith('89504e470d0a1a0a') : file.type === 'image/jpeg' ? signature.startsWith('ffd8ff') : signature.startsWith('52494646') && signature.slice(16, 24) === '57454250';
+  if (!valid) throw new Error('Formato da foto inválido.');
+  const ticket = await api('/api/admin/upload-url', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: file.type }) });
+  if (ticket.direct) {
+    const response = await fetch(ticket.uploadUrl, { method: 'PUT', headers: { 'Content-Type': file.type, 'Cache-Control': 'max-age=3600' }, body: file });
+    if (!response.ok) throw new Error('Não foi possível enviar a foto ao armazenamento.');
+    return ticket.url;
+  }
   const image = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(file); });
   const result = await api('/api/admin/upload', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ image }) });
   return result.url;
