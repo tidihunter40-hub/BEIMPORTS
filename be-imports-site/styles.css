@@ -188,7 +188,7 @@
 .site-header{height:104px;background:linear-gradient(90deg,#050d18 0%,#071321 68%,rgba(5,15,28,.84) 100%);border-bottom:1px solid #354055;backdrop-filter:blur(8px)}
 .header-inner{width:min(1392px,calc(100% - 48px));height:104px;min-height:104px;gap:30px}
 .brand{display:flex;align-items:center;gap:7px;width:310px;height:90px;flex:none;overflow:hidden}
-.brand-monogram,.brand-wordmark{display:block;flex:none;background-image:url('/assets/logo-original.png');background-repeat:no-repeat}
+.brand-monogram,.brand-wordmark{display:block;flex:none;background-image:url('/assets/logo-original.webp');background-repeat:no-repeat}
 .brand-monogram{width:80px;height:82px;background-size:302px 151px;background-position:-111px 0}
 .brand-wordmark{width:220px;height:56px;background-size:222px 111px;background-position:center -54px}
 .brand .brand-mobile-logo{display:none}
@@ -255,7 +255,7 @@
 #conteudo .home-showcase .price-line strong{color:#fff;font-size:23px}
 #conteudo .home-showcase .text-action{min-height:42px;padding:10px 14px;border:1px solid #B5A06B;border-radius:5px;color:#D6C390;font-size:13px;text-decoration:none}
 #conteudo .home-empty{display:grid;grid-template-columns:280px minmax(0,1fr);align-items:center;gap:56px;min-height:350px;padding:46px clamp(36px,5vw,86px);border:1px solid #B5A06B70;border-radius:10px;background:linear-gradient(110deg,#111722,#1B2742 58%,#111722);box-shadow:0 25px 70px #0004}
-#conteudo .home-empty-icon{display:block;width:155px;height:155px;margin-inline:auto;background:url('/assets/logo-original.png') no-repeat;background-size:570px 285px;background-position:-210px 0;filter:drop-shadow(0 12px 20px #0008)}
+#conteudo .home-empty-icon{display:block;width:155px;height:155px;margin-inline:auto;background:url('/assets/logo-original.webp') no-repeat;background-size:570px 285px;background-position:-210px 0;filter:drop-shadow(0 12px 20px #0008)}
 #conteudo .home-empty h3{margin:0;color:#fff;font:800 clamp(34px,3vw,47px)/1.1 Manrope,var(--font);letter-spacing:-.045em}
 #conteudo .home-empty p{max-width:570px;margin:17px 0 27px;color:#F5F4F0;font-size:19px;line-height:1.5}
 #conteudo .home-empty .button{min-height:58px;padding:15px 25px;border-color:#D6C390;background:#D6C390;color:#080F1C;font-size:15px}
@@ -380,7 +380,7 @@ body:has(.home-nav) .header-cart{grid-column:5;grid-row:1}
 #conteudo .home-hero::after{content:'';position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,#030b15 0%,#061325f0 35%,#0613259a 55%,transparent 75%),linear-gradient(0deg,#030b15aa,transparent 22%);pointer-events:none}
 #conteudo .home-hero-grid{position:relative;z-index:3;width:min(1440px,calc(100% - 72px));height:100%;min-height:0}
 #conteudo .home-visual{position:absolute;z-index:0;inset:0 0 0 auto;width:49%;height:100%;min-height:0;overflow:hidden}
-#conteudo .home-visual::before{content:'';position:absolute;z-index:0;inset:-24px;display:block;background:url('/assets/home-reference/hero-fachada-enviada.png') center/cover no-repeat;filter:blur(18px) brightness(.42) saturate(.9)}
+#conteudo .home-visual::before{content:'';position:absolute;z-index:0;inset:-24px;display:block;background:url('/assets/home-reference/hero-fachada-enviada.webp') center/cover no-repeat;filter:blur(18px) brightness(.42) saturate(.9)}
 #conteudo .home-visual img{position:absolute;z-index:1;top:0;right:0;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center;filter:contrast(1.12) saturate(1.08)}
 #conteudo .home-copy{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:center;width:min(57%,690px);height:100%;max-width:none;padding:28px 0}
 #conteudo .home-copy .eyebrow{color:#fff;font-size:clamp(10px,1vw,13px);font-weight:800;letter-spacing:.22em;white-space:normal}

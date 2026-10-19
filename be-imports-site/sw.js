@@ -1,22 +1,22 @@
-const cacheName = 'be-imports-static-v35';
-const assetCacheName = 'be-imports-assets-v35';
+const cacheName = 'be-imports-static-v36';
+const assetCacheName = 'be-imports-assets-v36';
 const offlinePage = '/offline.html';
 const staticShell = [
   offlinePage,
-  '/styles.css?v=33',
+  '/styles.css?v=34',
   '/perfumes-page.css?v=1',
   '/eletronicos-page.css?v=2',
   '/hero-polish.css?v=3',
   '/pwa-responsive.css?v=6',
-  '/script.js?v=44',
+  '/script.js?v=45',
   '/pwa.js?v=1',
   '/perfumes-page.js?v=1',
   '/eletronicos-page.js?v=2',
   '/catalog-filter.js?v=7',
-  '/bermudas-page.js?v=2',
-  '/ofertas-page.js?v=1',
+  '/bermudas-page.js?v=3',
+  '/ofertas-page.js?v=2',
   '/manifest.webmanifest',
-  '/assets/logo-original.png',
+  '/assets/logo-original.webp',
   '/assets/pwa-192.png',
   '/assets/pwa-512.png',
   '/assets/pwa-maskable-512.png',
