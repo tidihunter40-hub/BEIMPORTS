@@ -380,7 +380,7 @@ body:has(.home-nav) .header-cart{grid-column:5;grid-row:1}
 #conteudo .home-hero::after{content:'';position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,#030b15 0%,#061325f0 35%,#0613259a 55%,transparent 75%),linear-gradient(0deg,#030b15aa,transparent 22%);pointer-events:none}
 #conteudo .home-hero-grid{position:relative;z-index:3;width:min(1440px,calc(100% - 72px));height:100%;min-height:0}
 #conteudo .home-visual{position:absolute;z-index:0;inset:0 0 0 auto;width:49%;height:100%;min-height:0;overflow:hidden}
-#conteudo .home-visual::before{content:'';position:absolute;z-index:0;inset:-24px;display:block;background:url('/assets/home-reference/hero-fachada-enviada.webp') center/cover no-repeat;filter:blur(18px) brightness(.42) saturate(.9)}
+#conteudo .home-visual::before{content:'';position:absolute;z-index:0;inset:-24px;display:block;background:url('/assets/home-reference/hero-fachada-logo-corrigida.webp') center/cover no-repeat;filter:blur(18px) brightness(.42) saturate(.9)}
 #conteudo .home-visual img{position:absolute;z-index:1;top:0;right:0;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center;filter:contrast(1.12) saturate(1.08)}
 #conteudo .home-copy{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:center;width:min(57%,690px);height:100%;max-width:none;padding:28px 0}
 #conteudo .home-copy .eyebrow{color:#fff;font-size:clamp(10px,1vw,13px);font-weight:800;letter-spacing:.22em;white-space:normal}
