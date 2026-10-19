@@ -96,6 +96,9 @@ function renderCategories(catalog) {
   return `<div class="aw-view"><span class="eyebrow">CATEGORIAS</span><h2>Organizar categorias</h2><p class="aw-muted">Reordene ou desative categorias. Os formulários de edição existentes continuam abaixo.</p><div class="aw-category-order">${catalog.categories.map((c, i) => `<div><span>${i + 1}. ${esc(c.name)}</span><button type="button" data-category-move="${i}:up" ${i === 0 ? 'disabled' : ''}>↑</button><button type="button" data-category-move="${i}:down" ${i === catalog.categories.length - 1 ? 'disabled' : ''}>↓</button><label><input type="checkbox" data-category-active="${i}" ${c.active !== false ? 'checked' : ''}> Ativa</label></div>`).join('')}</div>
     <h3>Subcategorias de outras categorias</h3><form id="aw-subcategory-form" class="aw-form-grid"><label>Categoria<select name="category" required>${categoryOptions(catalog)}</select></label><label>Subcategoria<input name="name" required maxlength="60"></label><button class="button gold" type="submit">Criar subcategoria</button></form><div class="aw-category-order">${(catalog.subcategories || []).map((s, i) => `<div><span>${esc(s.category)} · ${esc(s.name)}</span><button type="button" data-subcategory-edit="${i}">Editar</button><button type="button" data-subcategory-remove="${i}">Excluir</button></div>`).join('')}</div></div>`;
 }
+function renderShirtSubcategories(catalog) {
+  return `<div class="aw-view"><span class="eyebrow">CAMISAS</span><h2>Subcategorias de camisas</h2><p class="aw-muted">Crie novas opções e selecione uma das ${catalog.shirtSubcategories?.length || 0} existentes abaixo para editar a foto, mudar o nome ou excluir. “Todos” é o filtro fixo que mostra todas as camisas.</p></div>`;
+}
 function renderLibrary(catalog) {
   const urls = [...new Set([...(catalog.media || []), ...catalog.products.flatMap(p => [p.image, ...(p.gallery || [])]), ...catalog.categories.map(c => c.image), ...(catalog.shirtSubcategories || []).map(s => s.image)].filter(Boolean))];
   return `<div class="aw-view"><span class="eyebrow">GALERIA DE FOTOS</span><h2>Biblioteca (${urls.length})</h2><p class="aw-muted">Envie várias imagens ou reutilize uma foto no cadastro rápido.</p><label class="aw-upload-drop" data-drop-zone="library">Arraste imagens aqui ou selecione arquivos<input id="aw-library-upload" type="file" accept="image/png,image/jpeg,image/webp" multiple></label><div class="aw-library">${urls.map(url => `<div><img src="${esc(url)}" alt="Foto da biblioteca"><button type="button" data-use-media="${esc(url)}">Usar no cadastro</button>${(catalog.media || []).includes(url) ? `<button type="button" data-remove-media="${esc(url)}">Remover da biblioteca</button>` : ''}</div>`).join('')}</div></div>`;
@@ -287,7 +290,7 @@ export function mountWorkspace(root, { catalog, api, upload, save, rerender, edi
   shell.className = 'aw-shell';
   shell.innerHTML = `<nav class="aw-nav" aria-label="Navegação do painel">${[
     ['overview', 'Visão geral'], ['quick', 'Cadastro rápido'], ['bulk', 'Cadastrar em massa'],
-    ['products', 'Produtos'], ['categories', 'Categorias'], ['library', 'Galeria de fotos'],
+    ['products', 'Produtos'], ['categories', 'Categorias'], ['shirt-subcategories', 'Subcategorias de camisas'], ['library', 'Galeria de fotos'],
     ['edit', 'Cadastro completo'], ['settings', 'Configurações']
   ].map(([key, label]) => `<button type="button" data-tab="${key}">${label}</button>`).join('')}</nav><main class="aw-main"><div id="admin-workspace-feedback"></div><div class="aw-screen"></div></main>`;
   legacy.before(shell);
@@ -296,12 +299,12 @@ export function mountWorkspace(root, { catalog, api, upload, save, rerender, edi
   const view = () => {
     shell.dataset.tab = state.tab;
     shell.querySelectorAll('.aw-nav [data-tab]').forEach(button => button.classList.toggle('active', button.dataset.tab === state.tab));
-    screen.innerHTML = notice(state.message, true) + (state.tab === 'overview' ? renderOverview(catalog) : state.tab === 'quick' ? renderQuick(catalog) : state.tab === 'bulk' ? renderBulk(catalog) : state.tab === 'products' ? renderProducts(catalog) : state.tab === 'categories' ? renderCategories(catalog) : state.tab === 'library' ? renderLibrary(catalog) : '');
-    const visible = ['edit', 'categories', 'settings'].includes(state.tab);
+    screen.innerHTML = notice(state.message, true) + (state.tab === 'overview' ? renderOverview(catalog) : state.tab === 'quick' ? renderQuick(catalog) : state.tab === 'bulk' ? renderBulk(catalog) : state.tab === 'products' ? renderProducts(catalog) : state.tab === 'categories' ? renderCategories(catalog) : state.tab === 'shirt-subcategories' ? renderShirtSubcategories(catalog) : state.tab === 'library' ? renderLibrary(catalog) : '');
+    const visible = ['edit', 'categories', 'shirt-subcategories', 'settings'].includes(state.tab);
     legacy.style.display = visible ? '' : 'none';
     legacy.querySelector('.admin-list').style.display = state.tab === 'edit' ? '' : 'none';
     const panels = legacy.querySelectorAll('.admin-panel');
-    panels.forEach((panel, index) => { panel.style.display = state.tab === 'edit' && index === 0 || state.tab === 'categories' && (index === 1 || index === 2) || state.tab === 'settings' && index === 3 ? '' : 'none'; });
+    panels.forEach((panel, index) => { panel.style.display = state.tab === 'edit' && index === 0 || state.tab === 'categories' && index === 1 || state.tab === 'shirt-subcategories' && index === 2 || state.tab === 'settings' && index === 3 ? '' : 'none'; });
     if (state.tab !== 'edit') legacy.style.gridTemplateColumns = '1fr';
   };
   const message = (value, good = false) => {

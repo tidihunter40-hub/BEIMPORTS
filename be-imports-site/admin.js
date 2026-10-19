@@ -246,9 +246,11 @@ async function saveShirtSubcategory(event) {
 async function deleteShirtSubcategory() {
   const item = (documentData.shirtSubcategories || []).find(value => value.name === selectedShirtSubcategory);
   if (!item) return;
-  if (documentData.products.some(product => product.category === 'Camisas' && product.subcategory === item.name)) { root.querySelector('#shirt-subcategory-feedback').innerHTML = errorText('Mova as camisas desta subcategoria primeiro.'); return; }
-  if (!confirm(`Excluir a subcategoria ${item.name}?`)) return;
-  if (await persist({ ...documentData, shirtSubcategories: documentData.shirtSubcategories.filter(value => value.name !== item.name) }, '#shirt-subcategory-feedback')) { selectedShirtSubcategory = null; renderDashboard(); }
+  const affected = documentData.products.filter(product => product.category === 'Camisas' && product.subcategory === item.name);
+  const details = affected.length ? `\n\n${affected.length} produto(s) deixarão de ter esta subcategoria: ${affected.map(product => product.name).join(', ')}. Os produtos e seus estoques serão mantidos.` : '';
+  if (!confirm(`Excluir a subcategoria ${item.name}?${details}`)) return;
+  const products = affected.length ? documentData.products.map(product => product.category === 'Camisas' && product.subcategory === item.name ? { ...product, subcategory: '' } : product) : documentData.products;
+  if (await persist({ ...documentData, shirtSubcategories: documentData.shirtSubcategories.filter(value => value.name !== item.name), products }, '#shirt-subcategory-feedback')) { selectedShirtSubcategory = null; renderDashboard(); }
 }
 async function saveSettings(event) {
   event.preventDefault();
