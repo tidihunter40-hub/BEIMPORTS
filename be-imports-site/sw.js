@@ -1,14 +1,14 @@
-const cacheName = 'be-imports-static-v37';
-const assetCacheName = 'be-imports-assets-v37';
+const cacheName = 'be-imports-static-v38';
+const assetCacheName = 'be-imports-assets-v38';
 const offlinePage = '/offline.html';
 const staticShell = [
   offlinePage,
-  '/styles.css?v=34',
+  '/styles.css?v=35',
   '/perfumes-page.css?v=1',
   '/eletronicos-page.css?v=2',
   '/hero-polish.css?v=3',
   '/pwa-responsive.css?v=6',
-  '/script.js?v=46',
+  '/script.js?v=47',
   '/pwa.js?v=1',
   '/perfumes-page.js?v=1',
   '/eletronicos-page.js?v=2',
